@@ -16,10 +16,15 @@ The features of the weather application include:
 -> Temperature in Celsius
 
 -> Wind speed in meters per second
+
 -> Humidity percentage
+
 -> Weather condition description
+
 -> Smooth loading states and Error handling
+
 -> Persistent storage of the last search
+
 -> icons from Lucide React
 
 
