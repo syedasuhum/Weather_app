@@ -21,11 +21,13 @@ function App() {
     return localStorage.getItem(STORAGE_KEY) || '';
   });
   const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const fetchWeather = async (searchCity) => {
     if (!searchCity.trim()) return;
 
+    setLoading(true);
     setError('');
     try {
       const response = await fetch(
@@ -43,7 +45,9 @@ function App() {
       setError(err instanceof Error ? err.message : 'Failed to fetch weather data');
       setWeather(null);
     } 
-  
+    finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -61,7 +65,7 @@ function App() {
 
   return (
     <div 
-      className="max-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('https://wallpapercat.com/w/full/f/2/a/21238-1920x1080-desktop-1080p-clouds-background-photo.jpg')`
       }}
@@ -79,7 +83,7 @@ function App() {
             )}
           </div>
           
-          <form onSubmit={handleSubmit} className="">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="relative">
               <input
                 type="text"
@@ -91,7 +95,7 @@ function App() {
               <button
                 type="submit"
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
-                
+                disabled={loading}
               >
                 <Search size={20} />
               </button>
@@ -99,6 +103,11 @@ function App() {
           </form>
         </div>
 
+        {loading && (
+          <div className="bg-white/80 backdrop-blur-md p-8 flex justify-center rounded-b-2xl shadow-lg">
+            <Loader2 className="animate-spin text-blue-500" size={32} />
+          </div>
+        )}
 
         {error && (
           <div className="bg-white/80 backdrop-blur-md text-red-500 p-4 rounded-b-2xl shadow-lg text-center">
@@ -106,8 +115,8 @@ function App() {
           </div>
         )}
 
-        {weather && (
-          <div className="bg-white/80 backdrop-blur-md rounded-b-2xl shadow-lg p-6 space-y-6 overflow-hidden">
+        {weather && !loading && (
+          <div className="bg-white/80 backdrop-blur-md rounded-b-2xl shadow-lg p-6 space-y-6">
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-gray-800">
                 {weather.name}
