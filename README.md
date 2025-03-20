@@ -26,6 +26,7 @@ The features of the weather application include:
 
 What Tech Stack I have use 
 > React as framework(useState, useEffect)
+> 
 > Fetching API as openWeatherMap
 
 How to Run the Code 
