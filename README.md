@@ -32,6 +32,8 @@ What Tech Stack I have use
 > React as framework(useState, useEffect)
 > 
 > Fetching API as openWeatherMap
+>
+> Styling is Tailwind CSS
 
 How to Run the Code 
 1. After downloading or using github desktop open the code in Visual studio
