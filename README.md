@@ -12,8 +12,11 @@ Here I have use free API key at OpenWeatherMap (https://openweathermap.org/api)
 The features of the weather application include:
 
 -> Real-time weather data fetching
+
 -> Temperature in Celsius
+
 -> Wind speed in meters per second
+
 -> Humidity percentage
 -> Weather condition description
 -> Smooth loading states and Error handling
